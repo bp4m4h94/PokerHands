@@ -25,7 +25,18 @@ public class ParserTest
                     new Card(){Suit="D", Value=6, Output="6"}, 
                 } 
             }, 
-            new Player() { Name = "White" } 
+            new Player() 
+            {  
+                Name = "White", 
+                Card = new List<Card>() 
+                {
+                    new Card(){Suit="C", Value=2, Output="2"}, 
+                    new Card(){Suit="H", Value=3, Output="3"},
+                    new Card(){Suit="S", Value=4, Output="4"},  
+                    new Card(){Suit="C", Value=9, Output="9"},  
+                    new Card(){Suit="H", Value=5, Output="5"}, 
+                }  
+            } 
         }, option => option.WithStrictOrdering());
     }
 }
