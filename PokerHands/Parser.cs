@@ -5,7 +5,7 @@ public class Parser
     public List<Player> Parse(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
-        var playerSection = input.Split("  ", StringSplitOptions.RemoveEmptyEntries);
+        var playerSection = input.Split("  ", StringSplitOptions.RemoveEmptyEntries);   
 
         var players = new List<Player>
         {
@@ -24,13 +24,31 @@ public class Parser
             .Select(x => new Card()
             {
                 Suit = x[1].ToString(),
-                Output = x[0].ToString(),
-                Value = (int)char.GetNumericValue(x[0])
+                Output = GetOutput(x[0]),
+                Value = GetValue(x[0])
             }).ToList();
         return new Player()
         {
             Name = name, 
             Card = card
         };
+    }
+
+    private static int GetValue(char cardNumber)
+    {
+        if (cardNumber == 'T')
+        {
+            return 10;
+        }
+        return (int)char.GetNumericValue(cardNumber);
+    }
+
+    private static string GetOutput(char cardNumber)
+    {
+        if (cardNumber == 'T')
+        {
+            return "10";
+        }
+        return cardNumber.ToString();
     }
 }
