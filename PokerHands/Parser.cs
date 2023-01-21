@@ -6,14 +6,11 @@ public class Parser
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
         var playerSection = input.Split("  ", StringSplitOptions.RemoveEmptyEntries);
-        var player1 = GetPlayer(playerSection, 0);
-        var player2 = GetPlayer(playerSection, 1);
-        // var player2Name = playerSection[1].Split(":", StringSplitOptions.RemoveEmptyEntries)[0];
-       
+
         var players = new List<Player>
         {
-            player1,
-            player2
+            GetPlayer(playerSection, 0),
+            GetPlayer(playerSection, 1)
         };
         return players;
     }
