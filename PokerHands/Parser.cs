@@ -36,13 +36,14 @@ public class Parser
 
     private static int GetValue(char cardNumber)
     {
-        if (cardNumber == 'T')
+        var cardLookup = new Dictionary<char, int>()
         {
-            return 10;
-        }
-        if (cardNumber == 'J')
+            { 'T', 10 },
+            { 'J', 11 }
+        };
+        if (cardLookup.ContainsKey(cardNumber))
         {
-            return 11;
+            return cardLookup[cardNumber];
         }
         return (int)char.GetNumericValue(cardNumber);
     }
