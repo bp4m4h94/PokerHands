@@ -2,6 +2,18 @@
 
 public class Parser
 {
+    private static readonly Dictionary<char, int> ValueLookup = new Dictionary<char, int>()
+    {
+        { 'T', 10 },
+        { 'J', 11 }
+    };
+
+    private static readonly Dictionary<char, string> OutputLookup = new Dictionary<char, string>()
+    {
+        {'T', "10"},
+        {'J', "Jack"}
+    };
+
     public List<Player> Parse(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
@@ -36,28 +48,11 @@ public class Parser
 
     private static int GetValue(char cardNumber)
     {
-        var cardLookup = new Dictionary<char, int>()
-        {
-            { 'T', 10 },
-            { 'J', 11 }
-        };
-        if (cardLookup.ContainsKey(cardNumber))
-        {
-            return cardLookup[cardNumber];
-        }
-        return (int)char.GetNumericValue(cardNumber);
+        return ValueLookup.ContainsKey(cardNumber) ? ValueLookup[cardNumber] : (int)char.GetNumericValue(cardNumber);
     }
 
     private static string GetOutput(char cardNumber)
     {
-        if (cardNumber == 'T')
-        {
-            return "10";
-        }
-        if (cardNumber == 'J')
-        {
-            return "Jack";
-        }
-        return cardNumber.ToString();
+        return OutputLookup.ContainsKey(cardNumber) ? OutputLookup[cardNumber] : cardNumber.ToString();
     }
 }
