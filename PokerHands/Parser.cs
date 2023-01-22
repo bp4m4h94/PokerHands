@@ -1,17 +1,23 @@
- namespace PokerHands; 
+namespace PokerHands; 
 
 public class Parser
 {
     private static readonly Dictionary<char, int> ValueLookup = new Dictionary<char, int>()
     {
         { 'T', 10 },
-        { 'J', 11 }
+        { 'J', 11 },
+        { 'Q', 12 },
+        { 'K', 13 },
+        { 'A', 14 }
     };
 
     private static readonly Dictionary<char, string> OutputLookup = new Dictionary<char, string>()
     {
-        {'T', "10"},
-        {'J', "Jack"}
+        { 'T', "10" },
+        { 'J', "Jack" },
+        { 'Q', "Queen" },
+        { 'K', "King" },
+        { 'A', "Ace" }
     };
 
     public List<Player> Parse(string input)
@@ -26,7 +32,7 @@ public class Parser
         };
         return players;
     }
-
+ 
     private Player GetPlayer(string[] playerSection, int playerIndex)
     {
         var name = playerSection[playerIndex].Split(":", StringSplitOptions.RemoveEmptyEntries)[0];
