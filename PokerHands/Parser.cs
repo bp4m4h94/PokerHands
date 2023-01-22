@@ -1,4 +1,4 @@
-namespace PokerHands; 
+ namespace PokerHands; 
 
 public class Parser
 {
@@ -40,6 +40,10 @@ public class Parser
         {
             return 10;
         }
+        if (cardNumber == 'J')
+        {
+            return 11;
+        }
         return (int)char.GetNumericValue(cardNumber);
     }
 
@@ -48,6 +52,10 @@ public class Parser
         if (cardNumber == 'T')
         {
             return "10";
+        }
+        if (cardNumber == 'J')
+        {
+            return "Jack";
         }
         return cardNumber.ToString();
     }

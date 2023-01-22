@@ -10,8 +10,8 @@ public class ParserTest
     public void parse_player()
     {
         var parser = new Parser();
-        var players = parser.Parse("Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C TH");
-        players.Should().BeEquivalentTo(new List<Player> 
+        var players = parser.Parse("Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S JC TH");
+        players.Should().BeEquivalentTo(new List<Player>
         { 
             new Player() 
             { 
@@ -33,7 +33,7 @@ public class ParserTest
                     new Card(){Suit="C", Value=2, Output="2"}, 
                     new Card(){Suit="H", Value=3, Output="3"},
                     new Card(){Suit="S", Value=4, Output="4"},  
-                    new Card(){Suit="C", Value=9, Output="9"},  
+                    new Card(){Suit="C", Value=11, Output="Jack"}, 
                     new Card(){Suit="H", Value=10, Output="10"}, 
                 }  
             } 
