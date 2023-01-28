@@ -38,6 +38,8 @@ public class GameTests
     {
         ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 5S 8C KD",
             "Black wins. - with high card: 9");
+        ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 6S 9C KD",
+            "White wins. - with high card: 6");
     }
 
     private void ResultShouldBe(string input, string expected)
