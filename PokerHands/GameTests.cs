@@ -44,7 +44,7 @@ public class GameTests
     {
         // pair compare with high card
         ResultShouldBe("Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S",
-            "Black wins. - with full house: 4 over 2");
+            "Black wins. - with pair: 4");
     }
     
     private void ResultShouldBe(string input, string expected)

@@ -15,9 +15,23 @@ public class Game
 
         var pairs1 = pokerHands1.GroupBy(x => x.Value).Where(x => x.Count() == 2);
 
-        if (pairs1.Any())
+        var isPair = pairs1.Any();
+        Category categoryType1;
+        if (isPair)
         {
-            return "Black wins. - with full house: 4 over 2";
+            categoryType1 = Category.Pair;
+        }
+        else
+        {
+            categoryType1 = Category.HighCard;
+        }
+        
+        if (categoryType1 == Category.Pair)
+        {
+            var winnerPlayer = "Black";
+            var winnerCategory = "pair";
+            var winnerOutput = "4";
+            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
         
         var highCardComparer = new HighCardComparer();
@@ -32,4 +46,10 @@ public class Game
         
         return "Tie.";
     }
+}
+
+public enum Category
+{
+    HighCard = 0,
+    Pair = 1
 }
