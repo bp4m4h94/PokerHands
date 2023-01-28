@@ -25,23 +25,28 @@ public class GameTests
             "Black wins. - with high card: King");
         ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2C 3H 4S 9C AH",
             "White wins. - with high card: Ace");
-    }
-    
-    [Test]
-    public void both_high_card_tie()
-    {
+        
+        // both high card tie
         ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2H 3D 5S KD 8C",
             "Tie.");
-    }
-    [Test]
-    public void both_high_card_decided_winner_by_other_card()
-    {
+        
+        // both high card decided winner by other card
         ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 5S 8C KD",
             "Black wins. - with high card: 9");
         ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 6S 9C KD",
             "White wins. - with high card: 6");
+        ResultShouldBe("Black: 2H 2D 6S 9C KD  White: 2H 3D 6S 9C KD",
+            "White wins. - with high card: 3");
     }
 
+    [Test]
+    public void pair_win_others()
+    {
+        // pair compare with high card
+        ResultShouldBe(" Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S",
+            " Black wins. - with full house: 4 over 2");
+    }
+    
     private void ResultShouldBe(string input, string expected)
     {
         var showResult = _game.ShowResult(input);
