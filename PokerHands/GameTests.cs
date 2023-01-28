@@ -32,8 +32,12 @@ public class GameTests
     {
         ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2H 3D 5S KD 8C",
             "Tie.");
+    }
+    [Test]
+    public void both_high_card_decided_winner_by_other_card()
+    {
         ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 5S 8C KD",
-            "Tie.");
+            "Black wins. - with high card: 9.");
     }
 
     private void ResultShouldBe(string input, string expected)
