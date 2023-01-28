@@ -21,7 +21,7 @@ public class GameTests
         //     White wins. - with high card: 9
         ResultShouldBe("Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H",
             "White wins. - with high card: 9");
-        ResultShouldBe("Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H",
+        ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2C 3H 4S JC 5H",
             "Black wins. - with high card: King");
     }
 

@@ -6,13 +6,29 @@ public class Game
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
         var parser = new Parser();
-        var winnerPlayerName = parser.Parse(input)[1].Name;
-        var winnerOutput =  parser
-            .Parse(input)[1]
+        var players = parser.Parse(input);
+        
+        
+        var card1 = players[0]
             .Card.OrderByDescending(x => x.Value)
-            .First()
-            .Output;
+            .First();
+        var card2 = players[1]
+            .Card.OrderByDescending(x => x.Value)
+            .First();
 
-        return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        if (card2.Value > card1.Value)
+        {
+            var winnerPlayerName = players[1].Name;
+            var winnerOutput =  card2
+                .Output;
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        }
+        else
+        {
+            var winnerPlayerName = players[0].Name;
+            var winnerOutput =  card1
+                .Output;
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        }
     }
 }
