@@ -32,6 +32,8 @@ public class GameTests
     {
         ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2H 3D 5S KD 8C",
             "Tie.");
+        ResultShouldBe("Black: 2H 3D 5S 9C KD  White: 2H 3D 5S 8C KD",
+            "Tie.");
     }
 
     private void ResultShouldBe(string input, string expected)

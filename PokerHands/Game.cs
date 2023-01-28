@@ -5,8 +5,7 @@ public class Game
     public string ShowResult(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
-        var parser = new Parser();
-        var players = parser.Parse(input);
+        var players = new Parser().Parse(input);
         
         
         var card1 = players[0].GetPokerHands()
@@ -26,8 +25,7 @@ public class Game
                 winnerOutput = card2
                     .Output;
             }
-
-            if (compareResult > 0)
+            else    
             {
                 winnerPlayerName = players[0].Name;
                 winnerOutput = card1
