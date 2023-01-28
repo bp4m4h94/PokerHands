@@ -9,8 +9,7 @@ public class Game
         var players = parser.Parse(input);
         
         
-        var card1 = players[0]
-            .Card.OrderByDescending(x => x.Value)
+        var card1 = GetPokerHands(players[0])
             .First();
         var card2 = players[1]
             .Card.OrderByDescending(x => x.Value)
@@ -30,5 +29,11 @@ public class Game
                 .Output;
             return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
         }
+    }
+
+    private static IOrderedEnumerable<Card> GetPokerHands(Player player)
+    {
+        return player
+            .Card.OrderByDescending(x => x.Value);
     }
 }
