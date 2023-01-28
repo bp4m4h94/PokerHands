@@ -23,6 +23,15 @@ public class GameTests
             "White wins. - with high card: 9");
         ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2C 3H 4S JC 5H",
             "Black wins. - with high card: King");
+        ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2C 3H 4S 9C AH",
+            "White wins. - with high card: Ace");
+    }
+    
+    [Test]
+    public void both_high_card_tie()
+    {
+        ResultShouldBe("Black: 2H 3D 5S 8C KD  White: 2H 3D 5S KD 8C",
+            "Tie.");
     }
 
     private void ResultShouldBe(string input, string expected)

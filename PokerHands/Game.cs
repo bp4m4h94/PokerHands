@@ -16,6 +16,7 @@ public class Game
 
         string winnerPlayerName;
         string winnerOutput;
+        
         if (card2.Value > card1.Value)
         {
             winnerPlayerName = players[1].Name;
