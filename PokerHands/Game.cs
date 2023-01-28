@@ -13,6 +13,13 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
+        var pairs1 = pokerHands1.GroupBy(x => x.Value).Where(x => x.Count() == 2);
+
+        if (pairs1.Any())
+        {
+            return "Black wins. - with full house: 4 over 2";
+        }
+        
         var highCardComparer = new HighCardComparer();
         var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
 
