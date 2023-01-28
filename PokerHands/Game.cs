@@ -16,6 +16,11 @@ public class Game
 
         string winnerPlayerName;
         string winnerOutput;
+
+        if (card1.Value == card2.Value)
+        {
+            return "Tie.";
+        }
         
         if (card2.Value > card1.Value)
         {
