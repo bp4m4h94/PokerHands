@@ -10,11 +10,27 @@ public class Game
 
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
-        var enumerator1 = pokerHands1.GetEnumerator();
-        var enumerator2 = pokerHands2.GetEnumerator();
+        
+        var compareResult = Compare(pokerHands1, pokerHands2, out var winnerOutput);
 
+        if (compareResult != 0)
+        {
+            string winnerPlayerName = null;
+            winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
+
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        }
+        
+        return "Tie.";
+    }
+
+    private static int Compare(IOrderedEnumerable<Card> pokerHands1, IOrderedEnumerable<Card> pokerHands2,
+        out string? winnerOutput)
+    {
+        using var enumerator1 = pokerHands1.GetEnumerator();
+        using var enumerator2 = pokerHands2.GetEnumerator();
         var compareResult = 0;
-        string winnerOutput = null;
+        winnerOutput = null;
         while (enumerator1.MoveNext() && enumerator2.MoveNext())
         {
             var card1 = enumerator1.Current;
@@ -28,14 +44,6 @@ public class Game
             }
         }
 
-        if (compareResult != 0)
-        {
-            string winnerPlayerName = null;
-            winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
-
-            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
-        }
-        
-        return "Tie.";
+        return compareResult;
     }
 }
