@@ -1,30 +1,8 @@
 namespace PokerHands;
 
-public class Game
+public class HighCardComparer
 {
-    public string ShowResult(string input)
-    {
-        // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
-        var players = new Parser().Parse(input);
-
-
-        var pokerHands1 = players[0].GetPokerHands();
-        var pokerHands2 = players[1].GetPokerHands();
-        
-        var compareResult = Compare(pokerHands1, pokerHands2, out var winnerOutput);
-
-        if (compareResult != 0)
-        {
-            string winnerPlayerName = null;
-            winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
-
-            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
-        }
-        
-        return "Tie.";
-    }
-
-    private static int Compare(IOrderedEnumerable<Card> pokerHands1, IOrderedEnumerable<Card> pokerHands2,
+    public int Compare(IOrderedEnumerable<Card> pokerHands1, IOrderedEnumerable<Card> pokerHands2,
         out string? winnerOutput)
     {
         using var enumerator1 = pokerHands1.GetEnumerator();
@@ -45,5 +23,32 @@ public class Game
         }
 
         return compareResult;
+    }
+}
+
+public class Game
+{
+    private readonly HighCardComparer _highCardComparer = new HighCardComparer();
+
+    public string ShowResult(string input)
+    {
+        // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
+        var players = new Parser().Parse(input);
+
+
+        var pokerHands1 = players[0].GetPokerHands();
+        var pokerHands2 = players[1].GetPokerHands();
+        
+        var compareResult = _highCardComparer.Compare(pokerHands1, pokerHands2, out var winnerOutput);
+
+        if (compareResult != 0)
+        {
+            string winnerPlayerName = null;
+            winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
+
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        }
+        
+        return "Tie.";
     }
 }
