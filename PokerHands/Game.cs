@@ -13,32 +13,29 @@ public class Game
         var enumerator1 = pokerHands1.GetEnumerator();
         var enumerator2 = pokerHands2.GetEnumerator();
 
+        var compareResult = 0;
+        string winnerOutput = null;
         while (enumerator1.MoveNext() && enumerator2.MoveNext())
         {
             var card1 = enumerator1.Current;
             var card2 = enumerator2.Current;
 
-            var compareResult = card1.Value - card2.Value;
+            compareResult = card1.Value - card2.Value;
             if (compareResult != 0)
             {
-                string winnerPlayerName;
-                string winnerOutput;
-                if (compareResult < 0)
-                {
-                    winnerPlayerName = players[1].Name;
-                    winnerOutput = card2
-                        .Output;
-                }
-                else    
-                {
-                    winnerPlayerName = players[0].Name;
-                    winnerOutput = card1
-                        .Output;
-                }
-
-                return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+                winnerOutput = compareResult < 0 ? card2.Output : card1.Output;
+                break;
             }
         }
+
+        if (compareResult != 0)
+        {
+            string winnerPlayerName = null;
+            winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
+
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        }
+        
         return "Tie.";
     }
 }
