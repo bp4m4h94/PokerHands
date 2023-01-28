@@ -14,26 +14,28 @@ public class Game
         var card2 = players[1].GetPokerHands()
             .First();
 
-        string winnerPlayerName;
-        string winnerOutput;
+        string winnerPlayerName = null;
+        string winnerOutput = null;
 
-        if (card1.Value == card2.Value)
+        var compareResult = card1.Value - card2.Value;
+        if (compareResult != 0)
         {
-            return "Tie.";
+            if (compareResult < 0)
+            {
+                winnerPlayerName = players[1].Name;
+                winnerOutput = card2
+                    .Output;
+            }
+
+            if (compareResult > 0)
+            {
+                winnerPlayerName = players[0].Name;
+                winnerOutput = card1
+                    .Output;
+            }
+
+            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
         }
-        
-        if (card2.Value > card1.Value)
-        {
-            winnerPlayerName = players[1].Name;
-            winnerOutput = card2
-                .Output;
-        }
-        else
-        {
-            winnerPlayerName = players[0].Name;
-            winnerOutput = card1
-                .Output;
-        }
-        return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+        return "Tie.";
     }
 }
