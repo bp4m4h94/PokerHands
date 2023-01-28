@@ -14,19 +14,20 @@ public class Game
         var card2 = players[1].GetPokerHands()
             .First();
 
+        string winnerPlayerName;
+        string winnerOutput;
         if (card2.Value > card1.Value)
         {
-            var winnerPlayerName = players[1].Name;
-            var winnerOutput =  card2
+            winnerPlayerName = players[1].Name;
+            winnerOutput = card2
                 .Output;
-            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
         }
         else
         {
-            var winnerPlayerName = players[0].Name;
-            var winnerOutput =  card1
+            winnerPlayerName = players[0].Name;
+            winnerOutput = card1
                 .Output;
-            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
         }
+        return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
     }
 }
