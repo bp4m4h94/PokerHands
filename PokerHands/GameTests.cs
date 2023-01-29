@@ -43,7 +43,7 @@ public class GameTests
     public void pair_win_others()
     {
         // pair compare with high card
-        ResultShouldBe("Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S",
+        ResultShouldBe("Black: 3H 4S 4C 2D 5H  White: 2S 8S AS QS 3S",
             "Black wins. - with pair: 4");
     }
     

@@ -13,14 +13,14 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
-        var categoryType1 = GetCategoryType(pokerHands1);
-        var categoryType2 = GetCategoryType(pokerHands2);
+        var category1 = GetCategory(pokerHands1);
+        var category2 = GetCategory(pokerHands2);
 
-        if (categoryType1 > categoryType2)
+        if (category1.Type > category2.Type)
         {
-            var winnerPlayer = "Black";
-            var winnerCategory = "pair";
-            var winnerOutput = "4";
+            var winnerPlayer = players[0].Name;
+            var winnerCategory = category1.Name;
+            var winnerOutput = category1.Output;
             return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
           
@@ -37,7 +37,7 @@ public class Game
         return "Tie.";
     }
 
-    private static CategoryType GetCategoryType(IOrderedEnumerable<Card> pokerHands)
+    private static Category GetCategory(IOrderedEnumerable<Card> pokerHands)
     {
         var pairs = pokerHands
             .GroupBy(x => x.Value)
@@ -45,11 +45,17 @@ public class Game
         var isPair = pairs.Any();
         if (isPair)
         {
-            return CategoryType.Pair;
+            return new Category { Type = CategoryType.Pair, Name = "pair", Output = pairs.First().First().Output };
         }
-
-        return CategoryType.HighCard;
+        return new Category { Type = CategoryType.HighCard, Name = "high card" };
     }
+}
+
+internal class Category
+{
+    public CategoryType Type { get; set; }
+    public string Name { get; set; }
+    public string Output { get; set; }
 }
 
 public enum CategoryType
