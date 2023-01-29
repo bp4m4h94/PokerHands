@@ -14,8 +14,9 @@ public class Game
         var pokerHands2 = players[1].GetPokerHands();
 
         var categoryType1 = GetCategoryType(pokerHands1);
+        var categoryType2 = GetCategoryType(pokerHands2);
 
-        if (categoryType1 == CategoryType.Pair)
+        if (categoryType1 > categoryType2)
         {
             var winnerPlayer = "Black";
             var winnerCategory = "pair";
@@ -38,7 +39,9 @@ public class Game
 
     private static CategoryType GetCategoryType(IOrderedEnumerable<Card> pokerHands)
     {
-        var pairs = pokerHands.GroupBy(x => x.Value).Where(x => x.Count() == 2);
+        var pairs = pokerHands
+            .GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
         var isPair = pairs.Any();
         if (isPair)
         {
