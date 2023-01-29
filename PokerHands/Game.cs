@@ -13,27 +13,16 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
-        var pairs1 = pokerHands1.GroupBy(x => x.Value).Where(x => x.Count() == 2);
+        var categoryType1 = GetCategoryType(pokerHands1);
 
-        var isPair = pairs1.Any();
-        Category categoryType1;
-        if (isPair)
-        {
-            categoryType1 = Category.Pair;
-        }
-        else
-        {
-            categoryType1 = Category.HighCard;
-        }
-        
-        if (categoryType1 == Category.Pair)
+        if (categoryType1 == CategoryType.Pair)
         {
             var winnerPlayer = "Black";
             var winnerCategory = "pair";
             var winnerOutput = "4";
             return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
-        
+          
         var highCardComparer = new HighCardComparer();
         var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
 
@@ -46,9 +35,21 @@ public class Game
         
         return "Tie.";
     }
+
+    private static CategoryType GetCategoryType(IOrderedEnumerable<Card> pokerHands)
+    {
+        var pairs = pokerHands.GroupBy(x => x.Value).Where(x => x.Count() == 2);
+        var isPair = pairs.Any();
+        if (isPair)
+        {
+            return CategoryType.Pair;
+        }
+
+        return CategoryType.HighCard;
+    }
 }
 
-public enum Category
+public enum CategoryType
 {
     HighCard = 0,
     Pair = 1
