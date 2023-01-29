@@ -46,8 +46,20 @@ public class Game
         var isPair = pairs.Any();
         if (isPair)
         {
-            return new Category { Type = CategoryType.Pair, Name = "pair", Output = pairs.First().First().Output };
+            return new Pair { Output = pairs.First().First().Output };
         }
-        return new Category { Type = CategoryType.HighCard, Name = "high card" };
+        return new HighCard();
     }
+}
+
+internal class HighCard : Category
+{
+    public override CategoryType Type => CategoryType.HighCard;
+    public override string Name => "high card";
+}
+
+internal class Pair : Category
+{
+    public override CategoryType Type => CategoryType.Pair;
+    public override string Name => "pair";
 }

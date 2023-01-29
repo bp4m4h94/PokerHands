@@ -1,8 +1,10 @@
 namespace PokerHands.Categories;
 
-internal class Category
+internal abstract class Category
 {
-    public CategoryType Type { get; set; }
-    public string Name { get; set; }
+    public abstract CategoryType Type { get; }
+
+    public abstract string Name { get; }
+
     public string Output { get; set; }
 }
