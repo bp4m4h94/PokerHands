@@ -1,3 +1,4 @@
+using PokerHands.Categories;
 using PokerHands.Comparers;
 
 namespace PokerHands;
@@ -49,17 +50,4 @@ public class Game
         }
         return new Category { Type = CategoryType.HighCard, Name = "high card" };
     }
-}
-
-internal class Category
-{
-    public CategoryType Type { get; set; }
-    public string Name { get; set; }
-    public string Output { get; set; }
-}
-
-public enum CategoryType
-{
-    HighCard = 0,
-    Pair = 1
 }
