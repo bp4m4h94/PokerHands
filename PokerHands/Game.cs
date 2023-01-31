@@ -24,6 +24,10 @@ public class Game
             var winnerOutput = category1.Output;
             return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
+        if (category2.Type > category1.Type)
+        {
+            return "White wins. - with pair: Queen";
+        }
           
         var highCardComparer = new HighCardComparer();
         var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);

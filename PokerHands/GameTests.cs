@@ -45,8 +45,8 @@ public class GameTests
         // pair compare with high card
         ResultShouldBe("Black: 3H 4S 4C 2D 5H  White: 2S 8S AS QS 3S",
             "Black wins. - with pair: 4");
-        // ResultShouldBe("Black: 2S 8S AS QS 3S  White: 3H 4S 4C 2D 5H",
-        //     "Black wins. - with pair: 4");
+        ResultShouldBe("Black: 2S 8S AS QS 3S  White: 3H QS QC 2D 5H",
+            "White wins. - with pair: Queen");
     }
     
     private void ResultShouldBe(string input, string expected)
