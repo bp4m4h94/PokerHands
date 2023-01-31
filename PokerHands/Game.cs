@@ -26,7 +26,10 @@ public class Game
         }
         if (category2.Type > category1.Type)
         {
-            return "White wins. - with pair: Queen";
+            var winnerPlayer = players[1].Name;
+            var winnerCategory = category2.Name;
+            var winnerOutput = category2.Output;
+            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
           
         var highCardComparer = new HighCardComparer();
