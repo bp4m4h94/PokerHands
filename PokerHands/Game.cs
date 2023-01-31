@@ -17,31 +17,34 @@ public class Game
         var category1 = GetCategory(pokerHands1);
         var category2 = GetCategory(pokerHands2);
 
-        if (category1.Type > category2.Type)
+        if (category1.Type != category2.Type)
         {
-            var winnerPlayer = players[0].Name;
-            var winnerCategory = category1.Name;
-            var winnerOutput = category1.Output;
-            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
+            if (category1.Type > category2.Type)
+            {
+                var winnerPlayer = players[0].Name;
+                var winnerCategory = category1.Name;
+                var winnerOutput = category1.Output;
+                return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
+            }
+            if (category2.Type > category1.Type)
+            {
+                var winnerPlayer = players[1].Name;
+                var winnerCategory = category2.Name;
+                var winnerOutput = category2.Output;
+                return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
+            }
         }
-        if (category2.Type > category1.Type)
+        else
         {
-            var winnerPlayer = players[1].Name;
-            var winnerCategory = category2.Name;
-            var winnerOutput = category2.Output;
-            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
+            var highCardComparer = new HighCardComparer();
+            var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
+            if (compareResult != 0)
+            {
+                var winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
+                var winnerOutput = highCardComparer.WinnerOutput;
+                return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+            }
         }
-          
-        var highCardComparer = new HighCardComparer();
-        var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
-
-        if (compareResult != 0)
-        {
-            var winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
-            var winnerOutput = highCardComparer.WinnerOutput;
-            return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
-        }
-        
         return "Tie.";
     }
 
