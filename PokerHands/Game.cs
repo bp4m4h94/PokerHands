@@ -3,8 +3,31 @@ using PokerHands.Comparers;
 
 namespace PokerHands;
 
+public class DifferentCategoryComparer
+{
+    public int DifferentCategoryCompare(Category category1, Category category2, out string winnerCategory,
+        out string winnerOutput)
+    {
+        var compareResult = category1.Type - category2.Type;
+        if (category1.Type > category2.Type)
+        {
+            winnerCategory = category1.Name;
+            winnerOutput = category1.Output;
+        }
+        else
+        {
+            winnerCategory = category2.Name;
+            winnerOutput = category2.Output;
+        }
+
+        return compareResult;
+    }
+}
+
 public class Game
 {
+    private readonly DifferentCategoryComparer _differentCategoryComparer = new DifferentCategoryComparer();
+
     public string ShowResult(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
@@ -23,7 +46,7 @@ public class Game
         string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            compareResult = DifferentCategoryCompare(category1, category2, out winnerCategory, out winnerOutput);
+            compareResult = _differentCategoryComparer.DifferentCategoryCompare(category1, category2, out winnerCategory, out winnerOutput);
         }
         else
         {
@@ -43,27 +66,9 @@ public class Game
         return "Tie.";
     }
 
-    private static int DifferentCategoryCompare(Category category1, Category category2, out string winnerCategory,
-        out string winnerOutput)
-    {
-        var compareResult = category1.Type - category2.Type;
-        if (category1.Type > category2.Type)
-        {
-            winnerCategory = category1.Name;
-            winnerOutput = category1.Output;
-        }
-        else
-        {
-            winnerCategory = category2.Name;
-            winnerOutput = category2.Output;
-        }
-
-        return compareResult;
-    }
-
     private static Category GetCategory(IOrderedEnumerable<Card> pokerHands)
     {
-        var pairs = pokerHands
+        var pairs  = pokerHands
             .GroupBy(x => x.Value)
             .Where(x => x.Count() == 2);
         var isPair = pairs.Any();

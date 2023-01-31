@@ -1,6 +1,6 @@
 namespace PokerHands.Categories;
 
-internal abstract class Category
+public abstract class Category
 {
     public abstract CategoryType Type { get; }
 
