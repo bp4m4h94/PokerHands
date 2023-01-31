@@ -26,13 +26,11 @@ public class Game
             compareResult = category1.Type - category2.Type;
             if (category1.Type > category2.Type)
             {
-                winnerPlayer = players[0].Name;
                 winnerCategory = category1.Name;
                 winnerOutput = category1.Output;
             }
             else
             {
-                winnerPlayer = players[1].Name;
                 winnerCategory = category2.Name;
                 winnerOutput = category2.Output;
             }
@@ -43,10 +41,11 @@ public class Game
             var highCardComparer = new HighCardComparer();
             compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
 
-            winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
             winnerOutput = highCardComparer.WinnerOutput;
             winnerCategory = highCardComparer.CategoryName;
         }
+        winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
+
         if (compareResult != 0)
         {
             return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
