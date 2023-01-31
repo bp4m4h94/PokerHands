@@ -24,4 +24,5 @@ public class HighCardComparer
     }
 
     public string WinnerOutput { get; private set; }
+    public string CategoryName => "high card";
 }

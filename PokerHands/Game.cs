@@ -48,7 +48,8 @@ public class Game
             {
                 var winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
                 var winnerOutput = highCardComparer.WinnerOutput;
-                return $"{winnerPlayerName} wins. - with high card: {winnerOutput}";
+                var winnerCategory = highCardComparer.CategoryName;
+                return $"{winnerPlayerName} wins. - with {winnerCategory}: {winnerOutput}";
             }
         }
 
