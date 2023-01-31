@@ -5,7 +5,7 @@ namespace PokerHands;
 
 public class DifferentCategoryComparer
 {
-    public int DifferentCategoryCompare(Category category1, Category category2, out string winnerCategory,
+    public int Compare(Category category1, Category category2, out string winnerCategory,
         out string winnerOutput)
     {
         var compareResult = category1.Type - category2.Type;
@@ -46,7 +46,7 @@ public class Game
         string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            compareResult = _differentCategoryComparer.DifferentCategoryCompare(category1, category2, out winnerCategory, out winnerOutput);
+            compareResult = _differentCategoryComparer.Compare(category1, category2, out winnerCategory, out winnerOutput);
         }
         else
         {
