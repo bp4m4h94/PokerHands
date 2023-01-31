@@ -5,23 +5,26 @@ namespace PokerHands;
 
 public class DifferentCategoryComparer
 {
-    public int Compare(Category category1, Category category2, out string winnerCategory,
-        out string winnerOutput)
+    public int Compare(Category category1, Category category2)
     {
         var compareResult = category1.Type - category2.Type;
         if (category1.Type > category2.Type)
         {
-            winnerCategory = category1.Name;
-            winnerOutput = category1.Output;
+            WinnerCategory = category1.Name;
+            WinnerOutput = category1.Output;
         }
         else
         {
-            winnerCategory = category2.Name;
-            winnerOutput = category2.Output;
+            WinnerCategory = category2.Name;
+            WinnerOutput = category2.Output;
         }
 
         return compareResult;
     }
+
+    public string WinnerOutput { get; set; }
+
+    public string WinnerCategory { get; set; }
 }
 
 public class Game
@@ -46,15 +49,16 @@ public class Game
         string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            compareResult = _differentCategoryComparer.Compare(category1, category2, out winnerCategory, out winnerOutput);
+            compareResult = _differentCategoryComparer.Compare(category1, category2);
+            winnerOutput = _differentCategoryComparer.WinnerOutput;
+            winnerCategory = _differentCategoryComparer.WinnerCategory;
         }
         else
         {
             var highCardComparer = new HighCardComparer();
             compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
-
             winnerOutput = highCardComparer.WinnerOutput;
-            winnerCategory = highCardComparer.CategoryName;
+            winnerCategory = highCardComparer.WinneCategory;
         }
         winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
 

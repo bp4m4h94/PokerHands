@@ -2,6 +2,9 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=13dff4f1_002D6b6d_002D4f0e_002Dab64_002Deb054262b9de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3d46ef0c_002Dab47_002D40ad_002D8428_002De26e63dfaf70/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3df4a8b3_002Ddcb4_002D449b_002Da667_002D08ae3ebf38c3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
@@ -11,6 +14,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=80a3603c_002D6ac0_002D4361_002D82fa_002D028de621751d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="parse_player_name" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8fca1d82_002D0e09_002D4361_002D9b51_002D4baef4e93b79/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8fca1d82_002D0e09_002D4361_002D9b51_002D4baef4e93b79/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
