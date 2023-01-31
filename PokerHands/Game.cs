@@ -17,40 +17,39 @@ public class Game
         var category1 = GetCategory(pokerHands1);
         var category2 = GetCategory(pokerHands2);
 
+        int compareResult;
+        string winnerPlayer;
+        string? winnerCategory;
+        string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            string winnerPlayer;
-            string? winnerCategory;
-            string winnerOutput;
+            compareResult = category1.Type - category2.Type;
             if (category1.Type > category2.Type)
             {
                 winnerPlayer = players[0].Name;
                 winnerCategory = category1.Name;
                 winnerOutput = category1.Output;
-                // return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
             }
             else
             {
                 winnerPlayer = players[1].Name;
                 winnerCategory = category2.Name;
                 winnerOutput = category2.Output;
-                // return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
             }
-
-            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
 
         }
         else
         {
             var highCardComparer = new HighCardComparer();
-            var compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
-            if (compareResult != 0)
-            {
-                var winnerPlayerName = compareResult < 0 ? players[1].Name : players[0].Name;
-                var winnerOutput = highCardComparer.WinnerOutput;
-                var winnerCategory = highCardComparer.CategoryName;
-                return $"{winnerPlayerName} wins. - with {winnerCategory}: {winnerOutput}";
-            }
+            compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
+
+            winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
+            winnerOutput = highCardComparer.WinnerOutput;
+            winnerCategory = highCardComparer.CategoryName;
+        }
+        if (compareResult != 0)
+        {
+            return $"{winnerPlayer} wins. - with {winnerCategory}: {winnerOutput}";
         }
 
         return "Tie.";
