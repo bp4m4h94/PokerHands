@@ -3,34 +3,8 @@ using PokerHands.Comparers;
 
 namespace PokerHands;
 
-public class DifferentCategoryComparer
-{
-    public int Compare(Category category1, Category category2)
-    {
-        var compareResult = category1.Type - category2.Type;
-        if (category1.Type > category2.Type)
-        {
-            WinnerCategory = category1.Name;
-            WinnerOutput = category1.Output;
-        }
-        else
-        {
-            WinnerCategory = category2.Name;
-            WinnerOutput = category2.Output;
-        }
-
-        return compareResult;
-    }
-
-    public string WinnerOutput { get; set; }
-
-    public string WinnerCategory { get; set; }
-}
-
 public class Game
 {
-    private readonly DifferentCategoryComparer _differentCategoryComparer = new DifferentCategoryComparer();
-
     public string ShowResult(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
@@ -44,14 +18,14 @@ public class Game
         var category2 = GetCategory(pokerHands2);
 
         int compareResult;
-        string winnerPlayer;
         string? winnerCategory;
         string winnerOutput;
         if (category1.Type != category2.Type)
         {
-            compareResult = _differentCategoryComparer.Compare(category1, category2);
-            winnerOutput = _differentCategoryComparer.WinnerOutput;
-            winnerCategory = _differentCategoryComparer.WinnerCategory;
+            var differentCategoryComparer = new DifferentCategoryComparer();
+            compareResult = differentCategoryComparer.Compare(category1, category2);
+            winnerOutput = differentCategoryComparer.WinnerOutput;
+            winnerCategory = differentCategoryComparer.WinnerCategory;
         }
         else
         {
@@ -60,7 +34,7 @@ public class Game
             winnerOutput = highCardComparer.WinnerOutput;
             winnerCategory = highCardComparer.WinneCategory;
         }
-        winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
+        var winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
 
         if (compareResult != 0)
         {
