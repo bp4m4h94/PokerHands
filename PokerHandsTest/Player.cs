@@ -1,4 +1,5 @@
 using System.Collections;
+using PokerHands.Categories;
 
 namespace PokerHands;
 
@@ -30,5 +31,18 @@ public class PokerHands : IEnumerable<Card>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
+    }
+
+    public Category GetCategory()
+    {
+        var pairs  = this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
+        var isPair = pairs.Any();
+        if (isPair)
+        {
+            return new Pair { Output = pairs.First().First().Output };
+        }
+
+        return new HighCard();
     }
 }

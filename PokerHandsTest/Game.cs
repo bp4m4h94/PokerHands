@@ -15,8 +15,8 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
-        var category1 = GetCategory(pokerHands1);
-        var category2 = GetCategory(pokerHands2);
+        var category1 = pokerHands1.GetCategory();
+        var category2 = pokerHands2.GetCategory();
 
         int compareResult;
         string? winnerCategory;
@@ -43,20 +43,6 @@ public class Game
         }
 
         return "Tie.";
-    }
-
-    private static Category GetCategory(PokerHands pokerHands)
-    {
-        var pairs  = pokerHands
-            .GroupBy(x => x.Value)
-            .Where(x => x.Count() == 2);
-        var isPair = pairs.Any();
-        if (isPair)
-        {
-            return new Pair { Output = pairs.First().First().Output };
-        }
-
-        return new HighCard();
     }
 }
 
