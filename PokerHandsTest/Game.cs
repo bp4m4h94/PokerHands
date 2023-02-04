@@ -45,7 +45,7 @@ public class Game
         return "Tie.";
     }
 
-    private static Category GetCategory(IEnumerable<Card> pokerHands)
+    private static Category GetCategory(PokerHands pokerHands)
     {
         var pairs  = pokerHands
             .GroupBy(x => x.Value)
