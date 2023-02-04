@@ -15,16 +15,13 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
-        var category1 = pokerHands1.GetCategory();
-        var category2 = pokerHands2.GetCategory();
-
         int compareResult;
         string? winnerCategory;
         string winnerOutput;
-        if (category1.Type != category2.Type)
+        if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
         {
             var differentCategoryComparer = new DifferentCategoryComparer();
-            compareResult = differentCategoryComparer.Compare(category1, category2);
+            compareResult = differentCategoryComparer.Compare(pokerHands1, pokerHands2);
             winnerOutput = differentCategoryComparer.WinnerOutput;
             winnerCategory = differentCategoryComparer.WinnerCategory;
         }
