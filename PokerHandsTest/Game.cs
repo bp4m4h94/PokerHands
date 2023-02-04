@@ -15,15 +15,8 @@ public class Game
         var pokerHands1 = players[0].GetPokerHands();
         var pokerHands2 = players[1].GetPokerHands();
 
-        IPokerHandsComparer comparer;
-        if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
-        {
-            comparer = new PokerHandsComparer();
-        }
-        else
-        {
-            comparer = new HighCardComparer();
-        }
+        var comparer = GetComparer(pokerHands1, pokerHands2);
+
         var compareResult = comparer.Compare(pokerHands1, pokerHands2);
         var winnerOutput = comparer.WinnerOutput;
         var winnerCategory = comparer.WinnerCategory;
@@ -35,6 +28,16 @@ public class Game
         }
 
         return "Tie.";
+    }
+
+    private static IPokerHandsComparer GetComparer(PokerHands pokerHands1, PokerHands pokerHands2)
+    {
+        if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
+        {
+            return new PokerHandsComparer();
+        }
+
+        return new HighCardComparer();
     }
 }
 
