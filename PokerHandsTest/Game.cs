@@ -36,7 +36,6 @@ public class Game
         {
             return new PokerHandsComparer();
         }
-
         return new HighCardComparer();
     }
 }
