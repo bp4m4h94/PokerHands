@@ -1,4 +1,4 @@
-namespace PokerHands.Categories;
+namespace PokerHandsTest.Categories;
 
 public enum CategoryType
 {

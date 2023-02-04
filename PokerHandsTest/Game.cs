@@ -1,5 +1,6 @@
 using PokerHands.Categories;
 using PokerHands.Comparers;
+using PokerHandsTest.Categories;
 
 namespace PokerHands;
 
@@ -44,7 +45,7 @@ public class Game
         return "Tie.";
     }
 
-    private static Category GetCategory(IOrderedEnumerable<Card> pokerHands)
+    private static Category GetCategory(IEnumerable<Card> pokerHands)
     {
         var pairs  = pokerHands
             .GroupBy(x => x.Value)

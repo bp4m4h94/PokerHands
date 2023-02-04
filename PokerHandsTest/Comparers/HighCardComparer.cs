@@ -2,7 +2,7 @@ namespace PokerHands.Comparers;
 
 public class HighCardComparer
 {
-    public int Compare(IOrderedEnumerable<Card> pokerHands1, IOrderedEnumerable<Card> pokerHands2)
+    public int Compare(IEnumerable<Card> pokerHands1, IEnumerable<Card> pokerHands2)
     {
         using var enumerator1 = pokerHands1.GetEnumerator();
         using var enumerator2 = pokerHands2.GetEnumerator();

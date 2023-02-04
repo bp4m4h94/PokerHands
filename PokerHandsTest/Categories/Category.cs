@@ -1,3 +1,5 @@
+using PokerHandsTest.Categories;
+
 namespace PokerHands.Categories;
 
 public abstract class Category
