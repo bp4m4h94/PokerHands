@@ -1,8 +1,8 @@
 namespace PokerHands.Comparers;
 
-public class HighCardComparer
+public class HighCardComparer : IPokerHandsComparer
 {
-    public int Compare(IEnumerable<Card> pokerHands1, IEnumerable<Card> pokerHands2)
+    public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
     {
         using var enumerator1 = pokerHands1.GetEnumerator();
         using var enumerator2 = pokerHands2.GetEnumerator();
@@ -24,5 +24,5 @@ public class HighCardComparer
     }
 
     public string WinnerOutput { get; private set; }
-    public string WinneCategory => "high card";
+    public string WinnerCategory => "high card";
 }
