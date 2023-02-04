@@ -20,7 +20,7 @@ public class Game
         string winnerOutput;
         if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
         {
-            var differentCategoryComparer = new DifferentCategoryComparer();
+            IPokerHandsComparer differentCategoryComparer = new PokerHandsComparer();
             compareResult = differentCategoryComparer.Compare(pokerHands1, pokerHands2);
             winnerOutput = differentCategoryComparer.WinnerOutput;
             winnerCategory = differentCategoryComparer.WinnerCategory;
