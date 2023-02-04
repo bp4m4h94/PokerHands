@@ -20,17 +20,17 @@ public class Game
         string winnerOutput;
         if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
         {
-            IPokerHandsComparer differentCategoryComparer = new PokerHandsComparer();
-            compareResult = differentCategoryComparer.Compare(pokerHands1, pokerHands2);
-            winnerOutput = differentCategoryComparer.WinnerOutput;
-            winnerCategory = differentCategoryComparer.WinnerCategory;
+            IPokerHandsComparer comparer = new PokerHandsComparer();
+            compareResult = comparer.Compare(pokerHands1, pokerHands2);
+            winnerOutput = comparer.WinnerOutput;
+            winnerCategory = comparer.WinnerCategory;
         }
         else
         {
-            var highCardComparer = new HighCardComparer();
-            compareResult = highCardComparer.Compare(pokerHands1, pokerHands2);
-            winnerOutput = highCardComparer.WinnerOutput;
-            winnerCategory = highCardComparer.WinneCategory;
+            var comparer = new HighCardComparer();
+            compareResult = comparer.Compare(pokerHands1, pokerHands2);
+            winnerOutput = comparer.WinnerOutput;
+            winnerCategory = comparer.WinneCategory;
         }
         var winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
 
