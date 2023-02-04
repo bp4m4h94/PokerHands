@@ -30,7 +30,7 @@ public class Game
             var comparer = new HighCardComparer();
             compareResult = comparer.Compare(pokerHands1, pokerHands2);
             winnerOutput = comparer.WinnerOutput;
-            winnerCategory = comparer.WinneCategory;
+            winnerCategory = comparer.WinnerCategory;
         }
         var winnerPlayer = compareResult < 0 ? players[1].Name : players[0].Name;
 
