@@ -34,4 +34,10 @@ public class PokerHands : IEnumerable<Card>
 
         return new HighCard();
     }
+
+    public IEnumerable<IGrouping<int, Card>> GetPair()
+    {   
+        return this.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
+    }
 }
