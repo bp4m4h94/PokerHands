@@ -5,6 +5,8 @@ namespace PokerHands;
 
 public class Game
 {
+    private static Dictionary<CategoryType, IPokerHandsComparer> SameCompareLookup;
+
     public string ShowResult(string input)
     {
         // Black: 2H 3D 5S 8C 6D  White: 2C 3H 4S 9C 5H
@@ -31,33 +33,20 @@ public class Game
 
     private static IPokerHandsComparer GetComparer(PokerHands pokerHands1, PokerHands pokerHands2)
     {
-        if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
+        var categoryType1 = pokerHands1.GetCategory().Type;
+        var categoryType2 = pokerHands2.GetCategory().Type;
+        
+        if (categoryType1 != categoryType2)
         {
             return new DifferentCategoryComparer();
         }
 
-        if (pokerHands1.GetCategory().Type == CategoryType.Pair)
+        var compareLookup = new Dictionary<CategoryType, IPokerHandsComparer>()
         {
-            return new PairComparer();
-        }
-        return new HighCardComparer();
+            { CategoryType.HighCard , new HighCardComparer()},
+            { CategoryType.Pair , new PairComparer()}
+        };
+        SameCompareLookup = compareLookup;
+        return SameCompareLookup[categoryType1];
     }
-}
-
-internal class PairComparer: IPokerHandsComparer
-{
-    public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
-    {
-        var pair1 = pokerHands1.GroupBy(x =>　x.Value)
-            .Where(x => x.Count() == 2);
-        var pair2 = pokerHands2.GroupBy(x => x.Value)
-            .Where(x => x.Count() == 2);
-        var compareResult = pair1.First().First().Value - pair2.First().First().Value;
-        WinnerOutput = compareResult > 0 ? pair1.First().First().Output : pair2.First().First().Output;
-        return compareResult;
-    }
-
-    public string WinnerOutput { get; private set; }
-
-    public string WinnerCategory => "pair";
 }
