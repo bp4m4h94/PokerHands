@@ -39,4 +39,11 @@ public class PokerHands : IEnumerable<Card>
         return this.GroupBy(x => x.Value)
             .Where(x => x.Count() == 2);
     }
+
+    public IEnumerable<Card> GetFirstCardOfEachGroup()
+    {
+        return this.GroupBy(x => x.Value)
+            .OrderByDescending(x => x.Count())
+            .Select(x => x.First());
+    }
 }
