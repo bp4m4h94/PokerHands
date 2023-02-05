@@ -1,8 +1,6 @@
-﻿using PokerHands.Categories;
+﻿namespace PokerHands.Comparers;
 
-namespace PokerHands.Comparers;
-
-public class PokerHandsComparer : IPokerHandsComparer
+public class DifferentCategoryComparer : IPokerHandsComparer
 {
     public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
     {

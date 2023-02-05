@@ -34,7 +34,7 @@ public class Game
     {
         if (pokerHands1.GetCategory().Type != pokerHands2.GetCategory().Type)
         {
-            return new PokerHandsComparer();
+            return new DifferentCategoryComparer();
         }
         return new HighCardComparer();
     }

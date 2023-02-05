@@ -1,4 +1,5 @@
 using FluentAssertions;
+using PokerHands.Categories;
 
 namespace PokerHands;
 
@@ -14,6 +15,7 @@ public class GameTests
     }
 
     [Test]
+    [Category("high card")]
     public void show_winner_card_output()
     {
         // 2~9
@@ -40,15 +42,31 @@ public class GameTests
     }
 
     [Test]
+    [Category("pair")]
+    [Category("different")]
     public void pair_win_others()
     {
         // pair compare with high card
+        // player 1 wins
         ResultShouldBe("Black: 3H 4S 4C 2D 5H  White: 2S 8S AS QS 3S",
             "Black wins. - with pair: 4");
+        // player2 wins
         ResultShouldBe("Black: 2S 8S AS QS 3S  White: 3H QS QC 2D 5H",
             "White wins. - with pair: Queen");
     }
-    
+
+    [Test]  
+    [Category("pair")]
+    [Category("same category")]
+    public void both_pair()
+    {
+        ResultShouldBe("Black: 2H 3S TC TD KH  White: 2S 3S 3S 9S AS",
+            "Black wins. - with pair: Ten");
+        
+        // ResultShouldBe("Black: 2S 8S AS QS 3S  White: 3H QS QC 2D 5H",
+            // "White wins. - with pair: Queen");
+    }
+
     private void ResultShouldBe(string input, string expected)
     {
         var showResult = _game.ShowResult(input);
