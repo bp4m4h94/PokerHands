@@ -10,10 +10,7 @@ internal class PairComparer: SameCategoryComparer
         var firstCardOfEachGroup1 = pokerHands1.GetFirstCardOfEachGroup();
         var firstCardOfEachGroup2 = pokerHands2.GetFirstCardOfEachGroup();
 
-        // var highCardComparer = new HighCardComparer();
-        var compareResult = CompareCardsByValue(firstCardOfEachGroup1, firstCardOfEachGroup2);
-        // WinnerOutput = highCardComparer.WinnerOutput;
-        return compareResult;
+        return CompareCardsByValue(firstCardOfEachGroup1, firstCardOfEachGroup2);
     }
 
     public override string WinnerCategory => "pair";
