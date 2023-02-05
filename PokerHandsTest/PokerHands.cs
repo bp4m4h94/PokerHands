@@ -24,8 +24,7 @@ public class PokerHands : IEnumerable<Card>
 
     public Category GetCategory()
     {
-        var pairs  = this.GroupBy(x => x.Value)
-            .Where(x => x.Count() == 2);
+        var pairs  = GetPairs();
         var isPair = pairs.Any();
         if (isPair)
         {
@@ -35,7 +34,7 @@ public class PokerHands : IEnumerable<Card>
         return new HighCard();
     }
 
-    public IEnumerable<IGrouping<int, Card>> GetPair()
+    public IEnumerable<IGrouping<int, Card>> GetPairs()
     {   
         return this.GroupBy(x => x.Value)
             .Where(x => x.Count() == 2);
