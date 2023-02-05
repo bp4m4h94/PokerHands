@@ -1,4 +1,3 @@
-using PokerHands.Categories;
 using PokerHands.Comparers;
 using PokerHandsTest.Categories;
 
@@ -36,18 +35,29 @@ public class Game
         {
             return new DifferentCategoryComparer();
         }
+
+        if (pokerHands1.GetCategory().Type == CategoryType.Pair)
+        {
+            return new PairComparer();
+        }
         return new HighCardComparer();
     }
 }
 
-internal class HighCard : Category
+internal class PairComparer: IPokerHandsComparer
 {
-    public override CategoryType Type => CategoryType.HighCard;
-    public override string Name => "high card";
-}
+    public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
+    {
+        var pair1 = pokerHands1.GroupBy(x =>　x.Value)
+            .Where(x => x.Count() == 2);
+        var pair2 = pokerHands2.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
+        var compareResult = pair1.First().First().Value - pair2.First().First().Value;
+        WinnerOutput = compareResult > 0 ? pair1.First().First().Output : pair2.First().First().Output;
+        return compareResult;
+    }
 
-internal class Pair : Category
-{
-    public override CategoryType Type => CategoryType.Pair;
-    public override string Name => "pair";
+    public string WinnerOutput { get; private set; }
+
+    public string WinnerCategory => "pair";
 }
