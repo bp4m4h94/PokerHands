@@ -1,13 +1,8 @@
 namespace PokerHands.Comparers;
 
-public class HighCardComparer : IPokerHandsComparer
+public abstract class SameCategoryComparer : IPokerHandsComparer
 {
-    public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
-    {
-        var compareResult = CompareCardsByValue(pokerHands1, pokerHands2);
-
-        return compareResult;
-    }
+    public abstract int Compare(PokerHands pokerHands1, PokerHands pokerHands2);
 
     public int CompareCardsByValue(IEnumerable<Card> pokerHands1, IEnumerable<Card> pokerHands2)
     {
@@ -31,5 +26,17 @@ public class HighCardComparer : IPokerHandsComparer
     }
 
     public string WinnerOutput { get; private set; }
-    public string WinnerCategory => "high card";
+    public abstract string WinnerCategory { get; }
+}
+
+public class HighCardComparer : SameCategoryComparer
+{
+    public override int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
+    {
+        var compareResult = CompareCardsByValue(pokerHands1, pokerHands2);
+
+        return compareResult;
+    }
+
+    public override string WinnerCategory => "high card";
 }
