@@ -4,6 +4,13 @@ public class HighCardComparer : IPokerHandsComparer
 {
     public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
     {
+        var compareResult = CompareCardsByValue(pokerHands1, pokerHands2);
+
+        return compareResult;
+    }
+
+    public int CompareCardsByValue(IEnumerable<Card> pokerHands1, IEnumerable<Card> pokerHands2)
+    {
         using var enumerator1 = pokerHands1.GetEnumerator();
         using var enumerator2 = pokerHands2.GetEnumerator();
         var compareResult = 0;
