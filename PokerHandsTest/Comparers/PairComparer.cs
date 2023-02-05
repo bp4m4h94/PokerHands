@@ -7,10 +7,7 @@ internal class PairComparer: SameCategoryComparer
         // Black: 2S 8S KS QS QS  White: 3H QS QC AD 5H
         // {QQ}{K}{8}{2}  {QQ}{A}{5}{3}
         // QK82 QA53
-        var firstCardOfEachGroup1 = pokerHands1.GetFirstCardOfEachGroup();
-        var firstCardOfEachGroup2 = pokerHands2.GetFirstCardOfEachGroup();
-
-        return CompareCardsByValue(firstCardOfEachGroup1, firstCardOfEachGroup2);
+        return CompareCardsByValue(pokerHands1.GetFirstCardOfEachGroup(), pokerHands2.GetFirstCardOfEachGroup());
     }
 
     public override string WinnerCategory => "pair";
