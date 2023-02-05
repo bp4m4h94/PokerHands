@@ -2,10 +2,11 @@
 
 internal class PairComparer: IPokerHandsComparer
 {
+    public string WinnerOutput { get; private set; }
+
     public int Compare(PokerHands pokerHands1, PokerHands pokerHands2)
     {
-        var pair1 = pokerHands1.GroupBy(x =>　x.Value)
-            .Where(x => x.Count() == 2);
+        var pair1 = GetPair(pokerHands1);
         var pair2 = pokerHands2.GroupBy(x => x.Value)
             .Where(x => x.Count() == 2);
         var compareResult = pair1.First().First().Value - pair2.First().First().Value;
@@ -13,7 +14,11 @@ internal class PairComparer: IPokerHandsComparer
         return compareResult;
     }
 
-    public string WinnerOutput { get; private set; }
+    private static IEnumerable<IGrouping<int, Card>> GetPair(PokerHands pokerHands1)
+    {   
+        return pokerHands1.GroupBy(x => x.Value)
+            .Where(x => x.Count() == 2);
+    }
 
     public string WinnerCategory => "pair";
 }
