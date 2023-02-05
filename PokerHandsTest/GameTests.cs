@@ -62,9 +62,15 @@ public class GameTests
     {
         ResultShouldBe("Black: 2H 3S TC TD KH  White: 2S 3S 3S 9S AS",
             "Black wins. - with pair: 10");
-        
+
         ResultShouldBe("Black: 2S 8S KS QS QS  White: 3H QS QC AD 5H",
             "White wins. - with pair: Ace");
+        
+        ResultShouldBe("Black: 2S 8S KS QS QS  White: 3H QS QC KD 8H",
+            "White wins. - with pair: 3");
+        
+        ResultShouldBe("Black: 2S 8S KS QS QS  White: 2S 8S KC QS QH",
+            "Tie.");
     }
 
     private void ResultShouldBe(string input, string expected)
