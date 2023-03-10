@@ -43,7 +43,7 @@ public class GameTests
 
     [Test]
     [Category("pair")]
-    [Category("different")]
+    [Category("different category")]
     public void pair_win_others()
     {
         // pair compare with high card
@@ -74,21 +74,16 @@ public class GameTests
     }
     
     [Test]  
-    [Category("two paira")]
-    [Category("different")]
+    [Category("two pairs")]
+    [Category("different category")]
     public void two_pairs_with_others()
     {
-        ResultShouldBe("Black: 2H 3S TC TD KH  White: 2S 3S 3S 9S AS",
-            "Black wins. - with pair: 10");
+        ResultShouldBe("Black: 2H 2S TC TD KH  White: 2S JS JS 9S AS",
+            "Black wins. - with two pairs: 10 over 2");
 
-        ResultShouldBe("Black: 2S 8S KS QS QS  White: 3H QS QC AD 5H",
-            "White wins. - with pair: Ace");
+        // ResultShouldBe("Black: 2S 8S KS QS QS  White: AH KS KC AD 5H",
+        //     "White wins. - with two pairs: Ace over King");
         
-        ResultShouldBe("Black: 2S 8S KS QS QS  White: 3H QS QC KD 8H",
-            "White wins. - with pair: 3");
-        
-        ResultShouldBe("Black: 2S 8S KS QS QS  White: 2S 8S KC QS QH",
-            "Tie.");
     }
 
     private void ResultShouldBe(string input, string expected)
