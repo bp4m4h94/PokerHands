@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using PokerHands.Categories;
+using PokerHandsTest.Categories;
 
 namespace PokerHands;
 
@@ -25,8 +26,16 @@ public class PokerHands : IEnumerable<Card>
     public Category GetCategory()
     {
         var pairs  = GetPairs();
-        var isPair = pairs.Any();
-        if (isPair)
+        
+        if (pairs.Count() == 2)
+        {
+            return new TwoPairs
+            {
+                // todo: hard code return
+                Output = "10 over 2"
+            };
+        }
+        if (pairs.Any())
         {
             return new Pair { Output = pairs.First().First().Output };
         }
@@ -46,4 +55,10 @@ public class PokerHands : IEnumerable<Card>
             .OrderByDescending(x => x.Count())
             .Select(x => x.First());
     }
+}
+
+public class TwoPairs : Category
+{
+    public override CategoryType Type => CategoryType.TwoPairs;
+    public override string Name => "two pairs";
 }
