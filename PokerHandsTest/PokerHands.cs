@@ -3,13 +3,69 @@ using PokerHands.Categories;
 
 namespace PokerHands;
 
+public class TwoPairsMatcher
+{
+    private PokerHands _pokerHands;
+
+    public TwoPairsMatcher(PokerHands pokerHands)
+    {
+        _pokerHands = pokerHands;
+    }
+
+    public Category DecidedCategory()
+    {
+        if (IsMatchedTwoPairs(_pokerHands))
+        {
+            var biggerPair = _pokerHands.GetPairs().First().First().Output;
+            var smallerPair = _pokerHands.GetPairs().Last().First().Output;
+            return new TwoPairs
+            {
+                Output = $"{biggerPair} over {smallerPair}"
+            };
+        }
+        else
+        {
+            return NextMatch(_pokerHands);
+        }
+    }
+
+    private Category NextMatch(PokerHands pokerHands)
+    {
+        if (IsMatchedPair(pokerHands))
+        {
+            return new Pair { Output = _pokerHands.GetPairs().First().First().Output };
+        }
+        else
+        {
+            return new HighCard();
+        }
+    }
+
+    private static bool IsMatchedPair(PokerHands pokerHands)
+    {
+        return pokerHands.GetPairs().Any();
+    }
+
+    private static bool IsMatchedTwoPairs(PokerHands pokerHands)
+    {
+        return pokerHands.GetPairs().Count() == 2;
+    }
+}
+
 public class PokerHands : IEnumerable<Card>
 {
     private readonly IEnumerable<Card> _cards;
+    private readonly TwoPairsMatcher _twoPairsMatcher;
 
     public PokerHands(IEnumerable<Card> cards)
     {
         _cards = cards;
+        _twoPairsMatcher = new TwoPairsMatcher(this);
+    }
+
+    public TwoPairsMatcher TwoPairsMatcher
+    {
+        get { return _twoPairsMatcher; }
     }
 
     public IEnumerator<Card> GetEnumerator()
@@ -24,46 +80,7 @@ public class PokerHands : IEnumerable<Card>
 
     public Category GetCategory()
     {
-        return DecidedCategory();
-    }
-
-    private Category DecidedCategory()
-    {
-        if (isMatchedTwoPairs(this))
-        {
-            var biggerPair = GetPairs().First().First().Output;
-            var smallerPair = GetPairs().Last().First().Output;
-            return new TwoPairs
-            {
-                Output = $"{biggerPair} over {smallerPair}"
-            };
-        }
-        else
-        {
-            return NextMatch();
-        }
-    }
-
-    private Category NextMatch()
-    {
-        if (isMatchedPair(this))
-        {
-            return new Pair { Output = GetPairs().First().First().Output };
-        }
-        else
-        {
-            return new HighCard();
-        }
-    }
-
-    private static bool isMatchedPair(PokerHands pokerHands)
-    {
-        return pokerHands.GetPairs().Any();
-    }
-
-    private static bool isMatchedTwoPairs(PokerHands pokerHands)
-    {
-        return pokerHands.GetPairs().Count() == 2;
+        return TwoPairsMatcher.DecidedCategory();
     }
 
     public IEnumerable<IGrouping<int, Card>> GetPairs()
