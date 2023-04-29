@@ -29,10 +29,11 @@ public class PokerHands : IEnumerable<Card>
         
         if (pairs.Count() == 2)
         {
+            var biggerPair = pairs.First().First().Output;
+            var smallerPair = pairs.Last().First().Output;
             return new TwoPairs
             {
-                // todo: hard code return
-                Output = "10 over 2"
+                Output = $"{biggerPair} over {smallerPair}"
             };
         }
         if (pairs.Any())
