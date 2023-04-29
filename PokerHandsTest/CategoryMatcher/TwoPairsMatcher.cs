@@ -2,34 +2,9 @@
 
 namespace PokerHands.CategoryMatcher;
 
-public abstract class CategoryMatcher
-{
-    private readonly PairedMatcher _nextCategoryMatcher;
-
-    protected CategoryMatcher(PairedMatcher nextCategoryMatcher)
-    {
-        _nextCategoryMatcher = nextCategoryMatcher;
-    }
-
-    public Category DecidedCategory(PokerHands pokerHands)
-    {
-        if (IsMatched(pokerHands))
-        {
-            return GetMatchedCategory(pokerHands);
-        }
-        else
-        {
-            return _nextCategoryMatcher.DecidedCategory(pokerHands);
-        }
-    }
-
-    protected abstract Category GetMatchedCategory(PokerHands pokerHands);
-    protected abstract bool IsMatched(PokerHands pokerHands);
-}
-
 public class TwoPairsMatcher : CategoryMatcher
 {
-    public TwoPairsMatcher(PairedMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
+    public TwoPairsMatcher(CategoryMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
     {
     }
 
