@@ -2,31 +2,9 @@
 
 namespace PokerHands.CategoryMatcher;
 
-public class TwoPairsMatcher
+public class PairedMatcher
 {
-    public Category DecidedCategory(PokerHands pokerHands)
-    {
-        if (IsMatched(pokerHands))
-        {
-            return GetMatchedCategory(pokerHands);
-        }
-        else
-        {
-            return NextMatch(pokerHands);
-        }
-    }
-
-    private static Category GetMatchedCategory(PokerHands pokerHands)
-    {
-        var biggerPair = pokerHands.GetPairs().First().First().Output;
-        var smallerPair = pokerHands.GetPairs().Last().First().Output;
-        return new TwoPairs
-        {
-            Output = $"{biggerPair} over {smallerPair}"
-        };
-    }
-
-    private static Category NextMatch(PokerHands pokerHands)
+    public Category NextMatch(PokerHands pokerHands)
     {
         if (IsMatchedPair(pokerHands))
         {
@@ -38,12 +16,39 @@ public class TwoPairsMatcher
         }
     }
 
-    private static bool IsMatchedPair(PokerHands pokerHands)
+    private bool IsMatchedPair(PokerHands pokerHands)
     {
         return pokerHands.GetPairs().Any();
     }
+}
 
-    private static bool IsMatched(PokerHands pokerHands)
+public class TwoPairsMatcher
+{
+    private readonly PairedMatcher _pairedMatcher = new PairedMatcher();
+
+    public Category DecidedCategory(PokerHands pokerHands)
+    {
+        if (IsMatched(pokerHands))
+        {
+            return GetMatchedCategory(pokerHands);
+        }
+        else
+        {
+            return _pairedMatcher.NextMatch(pokerHands);
+        }
+    }
+
+    private Category GetMatchedCategory(PokerHands pokerHands)
+    {
+        var biggerPair = pokerHands.GetPairs().First().First().Output;
+        var smallerPair = pokerHands.GetPairs().Last().First().Output;
+        return new TwoPairs
+        {
+            Output = $"{biggerPair} over {smallerPair}"
+        };
+    }
+
+    private bool IsMatched(PokerHands pokerHands)
     {
         return pokerHands.GetPairs().Count() == 2;
     }
