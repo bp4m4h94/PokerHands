@@ -12,7 +12,7 @@ public class PokerHands : IEnumerable<Card>
     public PokerHands(IEnumerable<Card> cards)
     {
         _cards = cards;
-        _twoPairsMatcher = new TwoPairsMatcher();
+        _twoPairsMatcher = new TwoPairsMatcher(new PairedMatcher());
     }
 
     public IEnumerator<Card> GetEnumerator()
