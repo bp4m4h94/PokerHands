@@ -35,16 +35,19 @@ public class PokerHands : IEnumerable<Card>
         }
         else
         {
-            if (isMatchedPair(this))
-            {
-                return new Pair { Output = GetPairs().First().First().Output };
-            }
-            else
-            {
-                return new HighCard();
+            return NextMatch();
+        }
+    }
 
-            }
-
+    private Category NextMatch()
+    {
+        if (isMatchedPair(this))
+        {
+            return new Pair { Output = GetPairs().First().First().Output };
+        }
+        else
+        {
+            return new HighCard();
         }
     }
 
