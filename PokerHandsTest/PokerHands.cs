@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using PokerHands.Categories;
-using PokerHandsTest.Categories;
 
 namespace PokerHands;
 
@@ -25,23 +24,38 @@ public class PokerHands : IEnumerable<Card>
 
     public Category GetCategory()
     {
-        var pairs  = GetPairs();
-        
-        if (pairs.Count() == 2)
+        if (isMatchedTwoPairs(this))
         {
-            var biggerPair = pairs.First().First().Output;
-            var smallerPair = pairs.Last().First().Output;
+            var biggerPair = GetPairs().First().First().Output;
+            var smallerPair = GetPairs().Last().First().Output;
             return new TwoPairs
             {
                 Output = $"{biggerPair} over {smallerPair}"
             };
         }
-        if (pairs.Any())
+        else
         {
-            return new Pair { Output = pairs.First().First().Output };
-        }
+            if (isMatchedPair(this))
+            {
+                return new Pair { Output = GetPairs().First().First().Output };
+            }
+            else
+            {
+                return new HighCard();
 
-        return new HighCard();
+            }
+
+        }
+    }
+
+    private static bool isMatchedPair(PokerHands pokerHands)
+    {
+        return pokerHands.GetPairs().Any();
+    }
+
+    private static bool isMatchedTwoPairs(PokerHands pokerHands)
+    {
+        return pokerHands.GetPairs().Count() == 2;
     }
 
     public IEnumerable<IGrouping<int, Card>> GetPairs()
@@ -56,10 +70,4 @@ public class PokerHands : IEnumerable<Card>
             .OrderByDescending(x => x.Count())
             .Select(x => x.First());
     }
-}
-
-public class TwoPairs : Category
-{
-    public override CategoryType Type => CategoryType.TwoPairs;
-    public override string Name => "two pairs";
 }
