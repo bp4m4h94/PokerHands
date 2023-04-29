@@ -4,9 +4,9 @@ namespace PokerHands.CategoryMatcher;
 
 public abstract class CategoryMatcher
 {
-    private readonly CategoryMatcher _nextCategoryMatcher;
+    private readonly CategoryMatcher? _nextCategoryMatcher;
 
-    protected CategoryMatcher(CategoryMatcher nextCategoryMatcher)
+    protected CategoryMatcher(CategoryMatcher? nextCategoryMatcher)
     {
         _nextCategoryMatcher = nextCategoryMatcher;
     }

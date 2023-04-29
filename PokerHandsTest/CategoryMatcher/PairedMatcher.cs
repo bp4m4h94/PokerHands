@@ -4,7 +4,7 @@ namespace PokerHands.CategoryMatcher;
 
 public class PairedMatcher: CategoryMatcher
 {
-    public PairedMatcher(CategoryMatcher nextCategoryMatcher) : base(nextCategoryMatcher)
+    public PairedMatcher(CategoryMatcher? nextCategoryMatcher) : base(nextCategoryMatcher)
     {
     }
 
