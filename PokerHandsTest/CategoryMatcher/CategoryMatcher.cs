@@ -17,13 +17,10 @@ public abstract class CategoryMatcher
         {
             return GetMatchedCategory(pokerHands);
         }
-        else
-        {
-            var decidedCategory = _nextCategoryMatcher != null 
-                ? _nextCategoryMatcher.DecidedCategory(pokerHands) 
-                : new HighCard();
-            return decidedCategory;
-        }
+
+        return _nextCategoryMatcher != null 
+            ? _nextCategoryMatcher.DecidedCategory(pokerHands) 
+            : new HighCard();
     }
 
     protected abstract Category GetMatchedCategory(PokerHands pokerHands);
