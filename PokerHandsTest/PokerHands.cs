@@ -24,6 +24,11 @@ public class PokerHands : IEnumerable<Card>
 
     public Category GetCategory()
     {
+        return DecidedCategory();
+    }
+
+    private Category DecidedCategory()
+    {
         if (isMatchedTwoPairs(this))
         {
             var biggerPair = GetPairs().First().First().Output;
