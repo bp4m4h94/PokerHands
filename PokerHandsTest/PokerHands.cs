@@ -5,13 +5,6 @@ namespace PokerHands;
 
 public class TwoPairsMatcher
 {
-    private PokerHands _pokerHands;
-
-    public TwoPairsMatcher(PokerHands pokerHands)
-    {
-        _pokerHands = pokerHands;
-    }
-
     public Category DecidedCategory(PokerHands pokerHands)
     {
         if (IsMatchedTwoPairs(pokerHands))
@@ -33,7 +26,7 @@ public class TwoPairsMatcher
     {
         if (IsMatchedPair(pokerHands))
         {
-            return new Pair { Output = _pokerHands.GetPairs().First().First().Output };
+            return new Pair { Output = pokerHands.GetPairs().First().First().Output };
         }
         else
         {
@@ -60,7 +53,7 @@ public class PokerHands : IEnumerable<Card>
     public PokerHands(IEnumerable<Card> cards)
     {
         _cards = cards;
-        _twoPairsMatcher = new TwoPairsMatcher(this);
+        _twoPairsMatcher = new TwoPairsMatcher();
     }
 
     public IEnumerator<Card> GetEnumerator()
