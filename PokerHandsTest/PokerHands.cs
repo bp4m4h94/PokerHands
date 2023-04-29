@@ -63,11 +63,6 @@ public class PokerHands : IEnumerable<Card>
         _twoPairsMatcher = new TwoPairsMatcher(this);
     }
 
-    public TwoPairsMatcher TwoPairsMatcher
-    {
-        get { return _twoPairsMatcher; }
-    }
-
     public IEnumerator<Card> GetEnumerator()
     {
         return _cards.GetEnumerator();
@@ -80,7 +75,7 @@ public class PokerHands : IEnumerable<Card>
 
     public Category GetCategory()
     {
-        return TwoPairsMatcher.DecidedCategory();
+        return _twoPairsMatcher.DecidedCategory();
     }
 
     public IEnumerable<IGrouping<int, Card>> GetPairs()
