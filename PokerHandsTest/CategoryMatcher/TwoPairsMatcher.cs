@@ -20,6 +20,11 @@ public class TwoPairsMatcher : CategoryMatcher
 
     protected override bool IsMatched(PokerHands pokerHands)
     {
+        return IsTowPairs(pokerHands);
+    }
+
+    private static bool IsTowPairs(PokerHands pokerHands)
+    {
         return pokerHands.GetPairs().Count() == 2;
     }
 }
