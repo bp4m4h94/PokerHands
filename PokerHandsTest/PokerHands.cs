@@ -48,4 +48,9 @@ public class PokerHands : IEnumerable<Card>
     {
         return GetPairs().Count() == 2;
     }
+
+    public bool IsPair()
+    {
+        return GetPairs().Any();
+    }
 }

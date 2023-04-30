@@ -15,6 +15,6 @@ public class PairedMatcher: CategoryMatcher
 
     protected override bool IsMatched(PokerHands pokerHands)
     {
-        return pokerHands.GetPairs().Any();
+        return pokerHands.IsPair();
     }
 }
