@@ -43,4 +43,9 @@ public class PokerHands : IEnumerable<Card>
             .OrderByDescending(x => x.Count())
             .Select(x => x.First());
     }
+
+    public bool IsTowPairs()
+    {
+        return GetPairs().Count() == 2;
+    }
 }
