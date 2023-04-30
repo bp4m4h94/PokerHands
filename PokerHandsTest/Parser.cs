@@ -2,7 +2,7 @@ namespace PokerHands;
 
 public class Parser
 {
-    private static readonly Dictionary<char, int> ValueLookup = new Dictionary<char, int>()
+    private static readonly Dictionary<char, int> ValueLookup = new()
     {
         { 'T', 10 },
         { 'J', 11 },
@@ -11,7 +11,7 @@ public class Parser
         { 'A', 14 }
     };
 
-    private static readonly Dictionary<char, string> OutputLookup = new Dictionary<char, string>()
+    private static readonly Dictionary<char, string> OutputLookup = new()
     {
         { 'T', "10" },
         { 'J', "Jack" },

@@ -78,10 +78,22 @@ public class GameTests
     [Category("different category")]
     public void two_pairs_with_others()
     {
-        ResultShouldBe("Black: 2H 2S TC TD KH  White: 2S JS JS 9S AS",
+        ResultShouldBe("Black: 2H 2S TC TD KH  White: 2S TS JS 9S AS",
             "Black wins. - with two pairs: 10 over 2");
 
-        // ResultShouldBe("Black: 2S 8S KS QS QS  White: AH KS KC AD 5H",
+        ResultShouldBe("Black: 2S 8S KS TS QS  White: AH AS KC KD 5H",
+            "White wins. - with two pairs: Ace over King");
+        
+    }
+    [Test]  
+    [Category("two pairs")]
+    [Category("same category")]
+    public void two_pairs()
+    {
+        ResultShouldBe("Black: 2H 2S TC TD KH  White: 3S 3S QS QS AS",
+            "White wins. - with two pairs: Queen over 10");
+
+        // ResultShouldBe("Black: 2S 8S KS TS QS  White: AH AS KC KD 5H",
         //     "White wins. - with two pairs: Ace over King");
         
     }
