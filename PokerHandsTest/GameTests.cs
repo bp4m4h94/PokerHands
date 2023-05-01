@@ -91,11 +91,13 @@ public class GameTests
     public void two_pairs()
     {
         ResultShouldBe("Black: 2H 2S TC TD KH  White: 3S 3S QS QS AS",
-            "White wins. - with two pairs: Queen over 10");
+            "White wins. - with two pairs: Queen");
 
-        // ResultShouldBe("Black: 2S 8S KS TS QS  White: AH AS KC KD 5H",
-        //     "White wins. - with two pairs: Ace over King");
+        ResultShouldBe("Black: 2H 2S QC TD QH  White: 3S 3S QS QS AS",
+            "White wins. - with two pairs: 3");
         
+        ResultShouldBe("Black: 2H 2S QC TD QH  White: 2S 2H QC TD QH",
+            "Tie.");
     }
 
     private void ResultShouldBe(string input, string expected)

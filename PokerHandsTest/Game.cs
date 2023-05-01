@@ -7,8 +7,9 @@ public class Game
 {
     private static readonly Dictionary<CategoryType, IPokerHandsComparer> SameCompareLookup = new()
     {
-        { CategoryType.HighCard , new HighCardComparer()},
-        { CategoryType.Pair , new PairComparer()}
+        { CategoryType.Pair , new PairComparer()},
+        { CategoryType.TwoPairs , new TwoPairsComparer()},
+        { CategoryType.HighCard , new HighCardComparer()}
     };
 
     public string ShowResult(string input)
